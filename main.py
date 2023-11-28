@@ -16,7 +16,10 @@ To run this on windows:
 
 Then in a browser go to http://127.0.0.1:5000/
 """
-from flask import Flask
+from flask import (
+    Flask,
+    render_template,
+)
 
 
 app = Flask(__name__)
@@ -27,6 +30,12 @@ app = Flask(__name__)
 # then the full url would be https://example.com/
 # If the path was '/do/thing/' then the full url would be https://example.com/do/thing/
 @app.route("/")
-def hello_world():
-    # Return a string that will be the full response the browser gets
-    return "<h1>Hello, World!</h1>"
+def home():
+    # Return the home template page
+    return render_template("home.html")
+
+
+@app.route("/contact")
+def contact():
+    # Return the contact template page.
+    return render_template("contact.html")
