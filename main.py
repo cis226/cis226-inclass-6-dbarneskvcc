@@ -22,6 +22,9 @@ from views.home import (
     home_view,
     contact_view,
 )
+from views.employee import (
+    employee_list_view,
+)
 
 app = Flask(__name__)
 
@@ -31,3 +34,5 @@ app = Flask(__name__)
 # If the path was '/do/thing/' then the full url would be https://example.com/do/thing/
 app.add_url_rule("/", view_func=home_view)
 app.add_url_rule("/contact", view_func=contact_view)
+# Employee routes
+app.add_url_rule("/employees", view_func=employee_list_view)
