@@ -16,26 +16,18 @@ To run this on windows:
 
 Then in a browser go to http://127.0.0.1:5000/
 """
-from flask import (
-    Flask,
-    render_template,
+from flask import Flask
+
+from views.home import (
+    home_view,
+    contact_view,
 )
 
-
 app = Flask(__name__)
-
 
 # @app.route() lets you set the url path that will trigger each view.
 # '/' is the root of the domain. If your website was hosted at example.com
 # then the full url would be https://example.com/
 # If the path was '/do/thing/' then the full url would be https://example.com/do/thing/
-@app.route("/")
-def home():
-    # Return the home template page
-    return render_template("home.html")
-
-
-@app.route("/contact")
-def contact():
-    # Return the contact template page.
-    return render_template("contact.html")
+app.add_url_rule("/", view_func=home_view)
+app.add_url_rule("/contact", view_func=contact_view)
