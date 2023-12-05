@@ -66,3 +66,19 @@ def employee_add_view():
         last_name=last_name,
         weekly_salary=weekly_salary,
     )
+
+
+def employee_edit_view(pk):
+    """Show page for editing an existing Employee"""
+
+    return render_template(
+        "employee/employee_edit.html",
+    )
+
+
+def employee_delete_view(pk):
+    """Show page for deleting an existing Employee"""
+
+    return render_template(
+        "employee/employee_delete.html",
+    )
