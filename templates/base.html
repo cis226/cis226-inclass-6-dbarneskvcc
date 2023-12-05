@@ -54,6 +54,20 @@
 
     <!-- Begin page content -->
     <main role="main" class="container">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% if errors %}
+        {% for error in errors %}
+          <div class="alert alert-danger">{{ error }}</div>
+        {% endfor %}
+      {% endif %}
+
       {% block body %}{% endblock body %}
     </main>
 
