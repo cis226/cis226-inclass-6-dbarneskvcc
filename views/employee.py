@@ -46,7 +46,7 @@ def employee_add_view():
         if not weekly_salary:
             errors.append("The Weekly Salary is required")
         try:
-            float(weekly_salary)
+            weekly_salary = float(weekly_salary)
         except ValueError:
             errors.append("The Weekly Salary must be a float")
 
@@ -71,14 +71,66 @@ def employee_add_view():
 def employee_edit_view(pk):
     """Show page for editing an existing Employee"""
 
+    errors = []
+
+    employee = db_session.get(Employee, pk)
+
+    if not employee:
+        errors.append(f"Unknown employee with pk of {pk}")
+
+    if employee and request.method == "POST":
+        first_name = request.form["first_name"]
+        last_name = request.form["last_name"]
+        weekly_salary = request.form["weekly_salary"]
+
+        if not first_name:
+            errors.append("The First Name is required")
+        if not last_name:
+            errors.append("The Last Name is required")
+        if not weekly_salary:
+            errors.append("The Weekly Salary is required")
+        try:
+            weekly_salary = float(weekly_salary)
+        except ValueError:
+            errors.append("The Weekly Salary must be a float")
+
+        if not errors:
+            employee.first_name = first_name
+            employee.last_name = last_name
+            employee.weekly_salary = weekly_salary
+            db_session.commit()
+
+            flash("User updated successfully")
+
+            return redirect(url_for("employee_list_view"))
+
     return render_template(
         "employee/employee_edit.html",
+        errors=errors,
+        employee=employee,
     )
 
 
 def employee_delete_view(pk):
     """Show page for deleting an existing Employee"""
 
+    errors = []
+
+    employee = db_session.get(Employee, pk)
+
+    if not employee:
+        errors.append(f"Unknown employee with pk of {pk}")
+
+    if employee and request.method == "POST":
+        db_session.delete(employee)
+        db_session.commit()
+
+        flash("User deleted successfully")
+
+        return redirect(url_for("employee_list_view"))
+
     return render_template(
         "employee/employee_delete.html",
+        errors=errors,
+        employee=employee,
     )
