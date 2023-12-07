@@ -2,12 +2,13 @@
 from sqlalchemy import Column
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.types import Integer, String, Float
+from sqlalchemy_serializer import SerializerMixin
 
 # Base class for other models to inherit from
 Base = declarative_base()
 
 
-class Employee(Base):
+class Employee(Base, SerializerMixin):
     """Class to represent a single employee"""
 
     # Defines the database table name to use.

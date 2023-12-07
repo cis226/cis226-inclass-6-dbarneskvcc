@@ -27,6 +27,8 @@ from views.employee import (
     employee_add_view,
     employee_edit_view,
     employee_delete_view,
+    employee_list_api,
+    employee_api,
 )
 
 app = Flask(__name__)
@@ -54,4 +56,15 @@ app.add_url_rule(
     "/employees/<int:pk>/delete",
     view_func=employee_delete_view,
     methods=["GET", "POST"],
+)
+
+# Add some API endpoints that return our database data as JSON
+app.add_url_rule(
+    "/api/employees",
+    view_func=employee_list_api,
+)
+
+app.add_url_rule(
+    "/api/employees/<int:pk>",
+    view_func=employee_api,
 )

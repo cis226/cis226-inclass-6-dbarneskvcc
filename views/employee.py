@@ -134,3 +134,17 @@ def employee_delete_view(pk):
         errors=errors,
         employee=employee,
     )
+
+
+def employee_list_api():
+    """Returns JSON of employees from the database"""
+    employees = db_session.query(Employee).all()
+
+    # Convert employee instances to dicts inside a list.
+    return [e.to_dict() for e in employees]
+
+
+def employee_api(pk):
+    """Return JSON of a sinlge employee identified by pk from the database"""
+    employee = db_session.get(Employee, pk)
+    return employee.to_dict()
