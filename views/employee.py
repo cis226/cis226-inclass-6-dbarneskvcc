@@ -39,6 +39,11 @@ def employee_add_view():
         last_name = request.form["last_name"]
         weekly_salary = request.form["weekly_salary"]
 
+        test_check = "test_check" in request.form
+        print("---------------------", flush=True)
+        print(test_check, flush=True)
+        print("---------------------", flush=True)
+
         if not first_name:
             errors.append("The First Name is required")
         if not last_name:

@@ -6,7 +6,7 @@
   <h1>Employee Add</h1>
   <form method="POST">
     <div class="mb-3">
-      <label for="first_name" class="form-label">First Name:</label>
+      <label for="first_name_id" class="form-label">First Name:</label>
       <input
         type="text"
         class="form-control"
@@ -21,7 +21,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="last_name" class="form-label">Last Name:</label>
+      <label for="last_name_id" class="form-label">Last Name:</label>
       <input
         type="text"
         class="form-control"
@@ -36,7 +36,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="weekly_salary" class="form-label">Weekly Salary:</label>
+      <label for="weekly_salary_id" class="form-label">Weekly Salary:</label>
       <input
         type="text"
         class="form-control"
@@ -48,6 +48,23 @@
       <div id="weekly_salary_help_id" class="form-text">
         Weekly Salary of New Employee
       </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="test_check_id"
+        name="test_check"
+        value="foobarbaz"
+        {# You would want to check for whether the checkbox should be checked #}
+        {# Not just a blanket True. EX: If beverage.active #}
+        {% if True %}
+          checked
+        {% endif %}
+      >
+      <label for="test_check_id" class="form-check-label">Test check</label>
+      <div id="test_check_help_id" class="form-text">Test check help text</div>
     </div>
 
     <button class="btn btn-success" type="submit">Add</button>
